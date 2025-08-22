@@ -1,0 +1,24 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "",
+    "FUNCTIONS_WORKER_RUNTIME": "node",
+    
+    "STRIPE_SECRET_KEY": "sk_test_your_test_key_here",
+    "STRIPE_WEBHOOK_SECRET": "whsec_your_webhook_secret",
+    
+    "AZURE_STORAGE_CONNECTION_STRING": "DefaultEndpointsProtocol=https;AccountName=your-storage-account;AccountKey=your-storage-key;EndpointSuffix=core.windows.net",
+    "AZURE_STORAGE_CONTAINER_NAME": "customer-files",
+    
+    "SQL_CONNECTION_STRING": "Server=tcp:your-server.database.windows.net,1433;Initial Catalog=theprintedbay_dev;Persist Security Info=False;User ID=your-username;Password=your-password;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;",
+    
+    "SENDGRID_API_KEY": "SG.your-sendgrid-api-key",
+    "SENDGRID_FROM_EMAIL": "orders@theprintedbay.com",
+    
+    "APPLICATIONINSIGHTS_CONNECTION_STRING": "InstrumentationKey=db71d491-13e0-4cdb-8f35-9f03abc99dbe;IngestionEndpoint=https://centralus-2.in.applicationinsights.azure.com/;LiveEndpoint=https://centralus.livediagnostics.monitor.azure.com/;ApplicationId=332c8f80-0938-4641-a36a-08f46bff3699"
+  },
+  "Host": {
+    "CORS": "*",
+    "LocalHttpPort": 7071
+  }
+}

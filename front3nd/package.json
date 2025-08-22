@@ -1,0 +1,43 @@
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "dev:full": "concurrently --kill-others --restart-tries 3 --names \"FRONTEND,API\" --prefix-colors \"cyan,yellow\" \"npm run dev\" \"npm run api:dev\"",
+    "api:dev": "cd api && npm run build && func start --port 7071",
+    "api:build": "cd api && npm run build",
+    "build": "next build && npm run api:build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@microsoft/applicationinsights-web": "^3.3.9",
+    "@react-three/drei": "^9.122.0",
+    "@react-three/fiber": "^8.18.0",
+    "@types/three": "^0.179.0",
+    "jszip": "^3.10.1",
+    "next": "14.2.31",
+    "react": "^18",
+    "react-dom": "^18",
+    "three": "^0.170.0",
+    "three-mesh-bvh": "^0.8.0",
+    "three-stdlib": "^2.36.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
+    "concurrently": "^9.2.0",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "14.2.31",
+    "rimraf": "^5.0.10",
+    "typescript": "^5"
+  }
+}

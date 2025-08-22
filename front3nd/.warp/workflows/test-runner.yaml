@@ -1,0 +1,33 @@
+name: Run Tests
+command: |
+  if [[ "{{test_type}}" == "unit" ]]; then
+    npm test
+  elif [[ "{{test_type}}" == "unit-watch" ]]; then
+    npm run test:watch
+  elif [[ "{{test_type}}" == "unit-coverage" ]]; then
+    npm run test:coverage
+  elif [[ "{{test_type}}" == "e2e" ]]; then
+    npm run test:e2e
+  elif [[ "{{test_type}}" == "e2e-ui" ]]; then
+    npm run test:e2e:ui
+  elif [[ "{{test_type}}" == "payment-flow" ]]; then
+    npm run test:e2e:payment
+  else
+    echo "Available test types: unit, unit-watch, unit-coverage, e2e, e2e-ui, payment-flow"
+  fi
+tags:
+  - testing
+  - jest
+  - playwright
+description: |
+  Run different types of tests in the project:
+  - unit: All Jest unit tests
+  - unit-watch: Jest in watch mode
+  - unit-coverage: Jest with coverage report
+  - e2e: All Playwright E2E tests
+  - e2e-ui: Playwright with UI runner
+  - payment-flow: E2E tests for payment flow only
+arguments:
+  - name: test_type
+    description: Type of tests to run
+    default_value: unit

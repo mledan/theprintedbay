@@ -1,0 +1,47 @@
+name: Run Specific Test
+command: |
+  if [[ "{{test_framework}}" == "jest" ]]; then
+    if [[ -n "{{file_path}}" ]]; then
+      npx jest "{{file_path}}"
+    elif [[ -n "{{test_name}}" ]]; then
+      npx jest -t "{{test_name}}"
+    else
+      echo "❌ Provide either file_path or test_name for Jest"
+    fi
+  elif [[ "{{test_framework}}" == "playwright" ]]; then
+    if [[ -n "{{file_path}}" ]]; then
+      npx playwright test "{{file_path}}"
+      if [[ -n "{{browser}}" ]]; then
+        npx playwright test "{{file_path}}" --project={{browser}}
+      fi
+    else
+      echo "❌ Provide file_path for Playwright tests"
+    fi
+  else
+    echo "Available frameworks: jest, playwright"
+  fi
+tags:
+  - testing
+  - jest
+  - playwright
+  - specific
+description: |
+  Run specific test files or test cases:
+  
+  For Jest:
+  - Provide file_path to run a specific test file
+  - Provide test_name to run tests matching a pattern
+  
+  For Playwright:
+  - Provide file_path to run a specific E2E test
+  - Optionally provide browser (chromium, firefox, webkit)
+arguments:
+  - name: test_framework
+    description: Testing framework to use
+    default_value: jest
+  - name: file_path
+    description: Path to test file (relative to project root)
+  - name: test_name
+    description: Test name pattern (Jest only)
+  - name: browser
+    description: Browser for Playwright (chromium, firefox, webkit)

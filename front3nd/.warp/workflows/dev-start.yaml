@@ -1,0 +1,9 @@
+name: Start Development Server
+command: npm run dev
+tags:
+  - development
+  - nextjs
+description: |
+  Starts the Next.js development server with automatic environment validation.
+  Includes service monitoring dashboard at the bottom of the page.
+source_url: https://nextjs.org/docs/getting-started

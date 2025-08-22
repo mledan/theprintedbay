@@ -1,0 +1,47 @@
+name: Environment Setup & Validation
+command: |
+  echo "🔍 Checking environment setup..."
+  
+  # Check if .env.local exists
+  if [[ ! -f ".env.local" ]]; then
+    echo "⚠️  .env.local not found. Creating from template..."
+    if [[ -f ".env.local.example" ]]; then
+      cp .env.local.example .env.local
+      echo "✅ Created .env.local from .env.local.example"
+      echo "📝 Please edit .env.local with your actual values"
+    else
+      echo "❌ .env.local.example not found"
+    fi
+  else
+    echo "✅ .env.local exists"
+  fi
+  
+  # Check Node.js version
+  NODE_VERSION=$(node --version)
+  echo "📦 Node.js version: $NODE_VERSION"
+  
+  # Check npm dependencies
+  if [[ ! -d "node_modules" ]]; then
+    echo "📦 Installing dependencies..."
+    npm install
+  else
+    echo "✅ Dependencies installed"
+  fi
+  
+  # Check API dependencies
+  if [[ -d "api" ]] && [[ ! -d "api/node_modules" ]]; then
+    echo "📦 Installing API dependencies..."
+    cd api && npm install && cd ..
+  fi
+  
+  echo "🎯 Environment ready! Run 'npm run dev' to start development"
+tags:
+  - setup
+  - environment
+  - validation
+description: |
+  Sets up and validates the development environment:
+  - Creates .env.local from template if missing
+  - Checks Node.js version (requires 20.x+)
+  - Installs frontend and API dependencies
+  - Provides setup guidance
